@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Withdraw Money</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e9ecef; /* soft gray background */
+      color: #333;
+    }
+
+    nav {
+      background-color: #2c3e50; /* dark gray-blue */
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav a {
+      color: #ecf0f1; /* light gray text */
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+
+    .modify-student {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5em;
+      padding: 2em;
+    }
+
+    .modify-student-container {
+      background-color: #ffffff;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="number"] {
+      width: 100%;
+      padding: 0.6em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    form button {
+      width: 100%;
+      padding: 0.8em;
+      background-color: #17a2b8; /* soft teal */
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #138496; /* darker teal on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="/">All Accounts</a>
+    <a href="/addAccount">Add Account</a>
+    <a href="/deposit">Deposit</a>
+    <a href="/withdraw">Withdraw</a>
+  </nav>
+
+  <h1>Withdraw Money from Accounts</h1>
+
+  <div class="modify-student">
+    <% for (let currItem of accounts) { %>
+      <div class="modify-student-container">
+        <form action="/withdraw/<%= currItem._id %>" method="POST">
+
+          <label>Account Name: <%= currItem.name %></label>
+
+          <label>Account ID:</label>
+          <input type="text" value="<%= currItem.id %>" readonly />
+
+          <label>Current Balance:</label>
+          <input type="text" value="<%= currItem.balance.toFixed(2) %>" readonly />
+
+          <label>Withdraw Amount:</label>
+          <input type="number" name="amount" required min="1" step="0.01" />
+
+          <button type="submit">Withdraw</button>
+        </form>
+      </div>
+    <% } %>
+  </div>
+</body>
+
+</html>
