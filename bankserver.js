@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // MongoDB Connection
-const url = "mongodb+srv://donamaryshaju:dona@cluster0.knlqqgn.mongodb.net/bankdb?retryWrites=true&w=majority";
+const url = "mongodb+srv://";
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ DB connection error:", err));
@@ -110,3 +110,4 @@ app.post("/withdraw/:id", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+
